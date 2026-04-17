@@ -19,14 +19,16 @@ public class UrlController {
 
     @PostMapping
     public ResponseEntity<ResponseDTO> createShortUrl(@RequestBody RequestDTO requestDTO) {
-        String shorturl= urlService.createShortUrl(requestDTO.getOriginalUrl());
+        String shorturl = urlService.createShortUrl(requestDTO.getOriginalUrl());
         return ResponseEntity.ok(ResponseDTO.builder().shortUrl(shorturl).build());
     }
 
-
     @GetMapping("/{shorturl}")
     public ResponseEntity<Void> redirect(@PathVariable String shorturl) {
-        String originalUrl=urlService.getOrginalUrl(shorturl);
-        return ResponseEntity.status(HttpStatus.FOUND).header(HttpHeaders.LOCATION, originalUrl).build();
+        String originalUrl = urlService.getOrginalUrl(shorturl);
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .header(HttpHeaders.LOCATION, originalUrl)
+                .build();
     }
 }

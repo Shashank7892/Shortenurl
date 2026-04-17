@@ -22,7 +22,7 @@ public class UrlEntity {
 
     @Column(nullable = false,unique = true,length = 2048)
     private String originalUrl;
-    @Column(nullable = false,unique = true)
+    @Column(unique = true)
     private String shortUrl;
 
     private LocalDateTime createdAt;
